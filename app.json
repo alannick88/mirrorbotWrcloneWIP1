@@ -154,5 +154,8 @@
       {
         "plan": "heroku-postgresql"
       }
-    ]
+    ],
+    "buildpacks": [{
+      "url": "https://github.com/amivin/rclone-heroku.git"
+    }]
 }

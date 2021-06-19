@@ -26,3 +26,4 @@ telegraph
 pytz
 html-telegraph-poster>=0.2.31
 psycopg2-binary
+rclone

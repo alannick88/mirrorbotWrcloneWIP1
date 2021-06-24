@@ -7,6 +7,7 @@ import re
 import json
 import requests
 import logging
+import subprocess
 
 from google.auth.transport.requests import Request
 from google.oauth2 import service_account
@@ -203,6 +204,12 @@ class GoogleDriveHelper:
         # Define file instance and get url for download
         drive_file = self.__service.files().get(supportsTeamDrives=True, fileId=response['id']).execute()
         download_url = self.__G_DRIVE_BASE_DOWNLOAD_URL.format(drive_file.get('id'))
+
+        #Self-edited rclone command here
+        command = (['rclone', 'copy', file_path, file_name, 'onedrive:'])
+        result = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        output, error = result.communicate()
+
         return download_url
 
     def upload(self, file_name: str):
